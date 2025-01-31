@@ -1,0 +1,39 @@
+---
+title: "0.Intro_week_2"
+author: "subhash"
+date: "2025-01-31"
+output: html_document
+---
+
+```{bash}
+#Always request resources for running commands on HCC
+srun --licenses=common --nodes=1 --mem 1G --ntasks=1  --time=1:00:00 --pty bash
+### get a quick job
+srun --licenses=common --qos=short --nodes=1  --ntasks=1 --mem 1G --time 1:00:00 --pty bash
+
+#git hub intro by "gen"
+git clone [URL]
+git add --all
+git commit -m "message"
+git push
+git pull
+
+git fork #- copieing some one repo to your repo
+git clone #- coping your repo to local directory
+```
+
+
+```{r}
+#always follow dir system
+ install.packages('ProjectTemplate')
+ library('ProjectTemplate')
+ create.project('letters')
+```
+
+
+```{bash, eval = FALSE}
+cd #to folder
+git clone git@github.com:subhashmahamkali/2025-agro932-lab.git
+#now it will be cloned to HCC_UNL or even to local computer.
+open 2025-agro932-lab.Rproj #can directly open the repo with reletive path(not absolute path)
+```

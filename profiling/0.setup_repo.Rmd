@@ -1,8 +1,10 @@
 ---
 title: "Set up a github repo"
-date: "2025-01-30"
 author: "Jinliang Yang"
-output: html_document
+date: "2025-01-30"
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 The date format "2025-01-30" follows the ISO 8601 standard, which is written as YYYY-MM-DD (Year-Month-Day).
