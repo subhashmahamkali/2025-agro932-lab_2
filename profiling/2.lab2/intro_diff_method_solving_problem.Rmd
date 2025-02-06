@@ -1,0 +1,54 @@
+---
+title: "0.wright_fisher_int0"
+author: "subhash"
+date: "2025-01-31"
+output: html_document
+---
+
+#intro to the wright_fisher model 
+
+#wright fisher model using binomial distribution to randomly generate the allele number and allele freequency fro the next generation (based on number of simulations with initial allele freequency)
+
+```{r}
+A1 <- 10 # number of A1 allele (the minor allele) in the first generation
+N <- 10 # number of diploid individuals in the population
+
+# create allele frequency
+p <- A1/(2*N)
+# create A2 allele frequency
+#q <- 1 -p
+# sample from a binomial distribution with parameters size =2N and prob=p
+# this generates the number of A1 alles for 40 simulations (populations -not generations) simply it will run for 40 times with the initial allele freequency in p
+#in binomial distribution p = freequency of A1 in current generation, 2N = number of individuals
+#so this gerates number of A1 alleles in the next generation with 40 different simulations
+#rbinom randomly chooses based on the probability(p) or initial allele freequency, so we use this fucntion for the wright fisher
+A1<- rbinom(40, 2*N, p) 
+
+#allele freequencies of these 40 simulations in the next generation with intial allele frequency.
+p<- A1/(2*N)
+```
+
+#The following chunk runs the binominal distribution on the given allele number and individuals numbers over generation for one simulation over 10 generation (for example) and each time it updates the allele freequency based on the previous generation and later plot to see wheather getting fixed or not.
+
+```{r}
+A1 <- 100 # number of A1 allele (the minor allele) in the first generation
+N <- 1000 # number of diploid individuals in the population
+p <- A1/(2*N)
+
+### make a numeric vector to save all the 10 generations freequencies in the freq vector.
+freq <- as.numeric();
+t=10
+### Use for loop to run over t generations for one simulation and p -allele freequency updates each time with generation so for the 10 generation 10 allele freequecies are changed
+for (i in 1:t){
+  A1 <- rbinom(1, 2*N, p)
+  p <- A1/(2*N)
+  freq[i] <- p
+}
+#here freq vector stores all the values of 10 generation allele freequencies.
+
+#pdf("graphs/sim1.pdf", widht=5, height=5)
+plot(freq, type="l", ylim=c(0,1), col="red", xlab="generations", 
+     ylab=expression(p(A[1])), main="Wright-Fisher Simulation")
+
+```
+

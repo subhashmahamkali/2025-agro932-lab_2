@@ -18,80 +18,57 @@ output: html_document
 E(p_{t+}) &= p_t \\
 Var(p_{t+1}) &= p_tq_t/2N 
 \end{align*}
-
-
 ---
 
 # Wright Fisher simulation
 
 ### First of all, let's implement the Wright-Fisher simulation in R
 
-
 #intro to the wright_fisher model 
-
-```{r}
-# create two scalars
-A1 <- 100 # number of A1 allele (the minor allele) in the first generation
-N <- 1000 # number of diploid individuals in the population
-
-# create allele frequency
-p <- A1/(2*N)
-
-# create A2 allele frequency
-q <- 1 -p
-
-# sample from a binomial distribution with parameters size =2N and prob=p
-A1 <- rbinom(1, 2*N, p)
-p <- A1/(2*N)
-```
-
-```{r}
-# create two scalars
-A1 <- 100 # number of A1 allele (the minor allele) in the first generation
-N <- 1000 # number of diploid individuals in the population
-p <- A1/(2*N)
-
-### make a numeric vector to hold the results
-freq <- as.numeric();
-t=1000
-### Use for loop to run over t generations
-for (i in 1:t){
-  A1 <- rbinom(1, 2*N, p)
-  p <- A1/(2*N)
-  freq[i] <- p
-}
-
-#pdf("graphs/sim1.pdf", widht=5, height=5)
-plot(freq, type="l", ylim=c(0,1), col="red", xlab="time", 
-     ylab=expression(p(A[1])), main="Wright-Fisher Simulation")
-
-
-```
-
-
 #### Main model
+
+
+#here in th chink it is doing the wright fisher model using the binomial distribution by function dbinom and it is slightly different than other .RMD
+
+#here the allele count is 10 and 10 individuals(n) and i = 2 means (next or immediate generation) and then calculates the allele frequency as k adn nis teh sequence of numbers from 0-21 and prob is the probablity of getting the allele frequency from n (0-21) in the immediate genration since i=2.
+
+```{r}
+x <- vector()
+x[1] <- 10 
+N <- 10 
+i = 2
+k <- (x[i-1])/(2*N)
+n <- seq(0,2*N,1)
+prob <- dbinom(n, 2*N, k)
+
+```
+
+
+#this is the chunk that does the same, but in the loop for the 5 generations in the loop and each time k(allele frequency changes based on the number picked from x[i] <- sample(0:(2*N), 1, prob=prob)). This picks random number from 0-2N adn then in the loop it calculates frequency of that random number and gives the probabbility values for the allel count from 0-21. It repeats 5 times since we are comuting for 5 generations adn gives the prob after 5 generations.
+
 
 ```{r}
 # create a vector to store the allele count in each generation
 x <- vector()
-x[1] <- 1 # for example, a new mutation occurs in the first generation
+x[1] <- 10 # for example, a new mutation occurs in the first generation
 
 # Start to loop over t generations
 # binomial sampling at each generation - determines allele count in next generations
 N <- 10 # number of diploid individuals
-t = 1
+t = 5
 for (i in 2:t){ # t is the number of generations, starting with generation 2
     # calculate allele freq in the current generation
     k <- (x[i-1])/(2*N)
     # generate a vector with 2N individuals
     n <- seq(0,2*N,1) # Creates a vector n containing all possible allele counts from 0 to 2N
     
-    # density for the binomial distribution with paramters size=2N and prob=k
+    # density for the binomial distribution with parameters size=2N and prob=k
     prob <- dbinom(n, 2*N, k) # It returns a vector of probabilities corresponding to the likelihood of observing each allele count n given:
     # plot(prob)
     # choose one from a vector each with certain prob
     x[i] <- sample(0:(2*N), 1, prob=prob)
 }
+ plot(prob)
 ```
 
 ### let's breakdown of the code `prob <- dbinom(n, 2*N, k)`

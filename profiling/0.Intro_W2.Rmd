@@ -7,8 +7,7 @@ output: html_document
 
 ```{bash}
 #Always request resources for running commands on HCC
-srun --licenses=common --nodes=1 --mem 1G --ntasks=1  --time=1:00:00 --pty bash
-### get a quick job
+q### get a quick job
 srun --licenses=common --qos=short --nodes=1  --ntasks=1 --mem 1G --time 1:00:00 --pty bash
 
 #git hub intro by "gen"
