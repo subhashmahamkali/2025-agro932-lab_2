@@ -1,0 +1,15 @@
+---
+title: "HCC_classon_week_3"
+author: "subhash"
+date: "2025-02-06"
+output: html_document
+---
+
+
+#link for the class : https://hcc.unl.edu/agro932-spring-2025-classroom-tutorial
+
+
+#refer to the cheta sheets from HCC in this folder.
+
+
+

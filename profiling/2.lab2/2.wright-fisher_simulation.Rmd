@@ -28,8 +28,7 @@ Var(p_{t+1}) &= p_tq_t/2N
 #### Main model
 
 
-#here in th chink it is doing the wright fisher model using the binomial distribution by function dbinom and it is slightly different than other .RMD
-
+#here in this chunk it is doing the wright fisher model using the binomial distribution by function dbinom and it is slightly different than other .RMD
 #here the allele count is 10 and 10 individuals(n) and i = 2 means (next or immediate generation) and then calculates the allele frequency as k adn nis teh sequence of numbers from 0-21 and prob is the probablity of getting the allele frequency from n (0-21) in the immediate genration since i=2.
 
 ```{r}
@@ -44,8 +43,10 @@ prob <- dbinom(n, 2*N, k)
 ```
 
 
-#this is the chunk that does the same, but in the loop for the 5 generations in the loop and each time k(allele frequency changes based on the number picked from x[i] <- sample(0:(2*N), 1, prob=prob)). This picks random number from 0-2N adn then in the loop it calculates frequency of that random number and gives the probabbility values for the allel count from 0-21. It repeats 5 times since we are comuting for 5 generations adn gives the prob after 5 generations.
+#this is the chunk that does the same, but in the loop for the 5 generations in the loop and each time k(allele frequency changes based on the number picked from x[i] <- sample(0:(2*N), 1, prob=prob)). This picks random number from 0-2N and then in the loop it calculates frequency of that random number and gives the probabbility values for the allel count from 0-21. It repeats 5 times since we are comuting for 5 generations adn gives the prob after 5 generations or 5th generation.
 
+
+#then plots the probability vaulues for teh numbers from 0-20
 
 ```{r}
 # create a vector to store the allele count in each generation
@@ -91,7 +92,8 @@ This returns a vector where:
 - `prob[21]` is the probability of 20 copies.
 - The values follow a binomial distribution centered around 10, since k = 0.5.
 
-### you can do this on your local computer!
+### it does the same thing but first we created the function.
+#here output is the allele count.
 
 ```{r}
 wright_fisher <- function(N=1000, t=100, A1=100){
@@ -124,7 +126,7 @@ wright_fisher <- function(N=1000, t=100, A1=100){
 
 Here, we test a case of a new mutation occurs in the first generation of a small population    
 
-
+#output here is the allele count
 ```{r}
 sim1 <- wright_fisher(N=10, t=30, A1=1)
 plot(sim1, type="o", pch=19, xlab="Generations", ylab="A1 allele count")
@@ -134,24 +136,25 @@ plot(sim1, type="o", pch=19, xlab="Generations", ylab="A1 allele count")
 ---
 
 # simulate for one time
+#set.seed is nothing but picking the same random number everytime, to reproduce the results.
+#without this it will different results all the time. and output here is the allele counts
 
 ```{r}
 set.seed(1234587)
 sim1 <- wright_fisher(N=50, t=1000, A1=20)
 plot(sim1[1:100], type="o", pch=19, xlab="Generations", ylab="A1 allele count")
 
-sim1 <- wright_fisher(N=50, t=1000, A1=20)
-plot(sim1[1:100], type="o", pch=19, xlab="Generations", ylab="A1 allele count")
-
 ```
-
+#here output is the allele freequency.
+#we are doing the same WF simuation but for 101 parlelly first we do for 1 and then 100 speratly and parlley simulations.
+#set.seed is for picking the same random number everytime to make the results reproductibility.
 
 ```{r}
 set.seed(1234567)
 n=10
 a1=1
 t=100
-frq <- wright_fisher(N=n, A1=a1, t=t)/(2*n)
+frq <- wright_fisher(N=n, A1=a1, t=t)/(2*n) #converts the allele counts into allele frequencies
 plot(frq, type="l", ylim=c(0,1), col=3, xlab="Generations", ylab=expression(p(A[1])))
     for(u in 1:100){
       frq <- wright_fisher(N=n, A1=a1, t=t)/(2*n)
@@ -161,4 +164,6 @@ plot(frq, type="l", ylim=c(0,1), col=3, xlab="Generations", ylab=expression(p(A[
     }
 ```
 
-
+#Both set.seed(1234567) and set.seed(1234587) serve the same purpose of controlling randomness but will initialize different sequences of random numbers. 
+#Use the same seed if you want reproducibility and consistent results.
+#Change the seed if you want to test different random outcomes
