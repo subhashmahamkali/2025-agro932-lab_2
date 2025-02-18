@@ -8,8 +8,8 @@ set -e
 set -u
 
 # insert your script here
-cd largedata/
+cd largedata/lab_4
 for i in {1..20}
 do
-   wgsim first_chr.fa -e 0 -d 500 -N 50000 -1 100 -2 100 -r 0.1  -R 0 -X 0 l$i.read1.fq l$i.read2.fq
+   wgsim first_chr.fa -e 0 -d 500 -N 50000 -1 100 -2 100 -r 0.1  -R 0 -X 0 1.fastq/l$i.read1.fq 1.fastq/l$i.read2.fq
 done
