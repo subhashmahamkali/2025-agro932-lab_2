@@ -22,6 +22,7 @@ git pull
 
 git fork #- copieing some one repo to your repo
 git clone #- coping your repo to local directory
+
 ```
 
 
@@ -39,3 +40,56 @@ git clone git@github.com:subhashmahamkali/2025-agro932-lab.git
 #now it will be cloned to HCC_UNL or even to local computer.
 open 2025-agro932-lab.Rproj #can directly open the repo with reletive path(not absolute path)
 ```
+
+
+```{bash}
+ll = ls -l -a #shortcut for the command...
+#we can change in bashrc file to have small shortcuts insted of typing everything all time.
+
+vi .bashrc #bash decoration file
+:q! # to exit
+marks
+#copy this to home directory
+cp .bashrc to $HOME directory.
+source ~/.bashrc
+#if unmark
+unmark .bashrc
+:wq
+#if you made any changes to the .bashrc and save that bashrc.
+source ~/.bash_profile  
+:wq
+```
+
+
+
+```{bash}
+#usually he intsalls everything on home directory so they wont delete them.
+cd $HOME
+mkdir bin
+# https://github.com/lh3/wgsim
+git clone https://github.com/lh3/wgsim.git
+
+cd wgsim
+# compilation
+gcc -g -O2 -Wall -o wgsim wgsim.c -lz -lm
+
+
+# if I dont want to type the path of the software all the time then I can copy the path of that software to .bashrc and source so if I type name of that software then it will automatically appear
+#always make changes to bashrc in the home directory
+vi .bash_profile
+PATH=$PATH:~/bin/wgsim/
+:wq
+source ~/.bash_profile  
+
+wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/zea_mays/dna/Zea_mays.Zm-B73-REFERENCE-NAM-5.0.dna.nonchromosomal.fa.gz 
+gunzip Zea_mays.Zm-B73-REFERENCE-NAM-5.0.dna.nonchromosomal.fa
+less Zea_mays.Zm-B73-REFERENCE-NAM-5.0.dna.nonchromosomal.fa  | grep ">"
+less Zea_mays.Zm-B73-REFERENCE-NAM-5.0.dna.nonchromosomal.fa  | grep ">" | wc -l
+
+awk '/^>/ {if (found++) exit} {print}' Zea_mays.Zm-B73-REFERENCE-NAM-5.0.dna.nonchromosomal.fa > first_chr.fa
+#copying first CHR
+
+#provided ref gen with 700bp
+#He did math 
+```
+
