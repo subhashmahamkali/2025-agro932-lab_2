@@ -1,7 +1,7 @@
 #!/bin/bash -l
-#SBATCH -D /mnt/nrdstor/jyanglab/jyang21/2025-agro932-lab
-#SBATCH -o /mnt/nrdstor/jyanglab/jyang21/2025-agro932-lab/slurm-log/stdout-%j.txt
-#SBATCH -e /mnt/nrdstor/jyanglab/jyang21/2025-agro932-lab/slurm-log/stderr-%j.txt
+#SBATCH -D /work/jyanglab/subhash/0.assignment_agro_932/2025
+#SBATCH -o /work/jyanglab/subhash/0.assignment_agro_932/2025/slurm-log/stdout-%j.txt
+#SBATCH -e /work/jyanglab/subhash/0.assignment_agro_932/2025/slurm-log/stderr-%j.txt
 #SBATCH -J firstslurm
 #SBATCH -t 1:00:00
 set -e
