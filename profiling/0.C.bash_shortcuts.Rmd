@@ -1,0 +1,29 @@
+---
+title: "bash profile shortcuts"
+author: "subhash"
+date: "2025-02-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{bash}
+ll = ls -l -a #shortcut for the command...
+#we can change in bashrc file to have small shortcuts insted of typing everything all time.
+
+vi .bashrc #bash decoration file
+:q! # to exit
+marks
+#copy this to home directory
+cp .bashrc to $HOME directory.
+source ~/.bashrc
+#if unmark
+unmark .bashrc
+:wq
+#if you made any changes to the .bashrc and save that bashrc.
+source ~/.bash_profile  
+:wq
+```
+
